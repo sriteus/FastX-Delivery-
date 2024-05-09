@@ -137,6 +137,12 @@ const CardItems: React.FC<BigCat> = ({ name, description, image }) => {
           sx={{
             ...dialogContentStyle,
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${image}")`,
+            border: "5px solid #ff8928",
+            minWidth: "540px",
+            maxWidth: "540px",
+            maxHeight: "500px",
+            minHeight: "500px",
+            width: "100%",
           }}
         >
           <DialogTitle sx={dialogTitleStyle}>

@@ -182,7 +182,7 @@ export default function Navbar() {
               },
             }}
           >
-            <DialogTitle sx={{ textAlign: "center" }}>
+            <DialogTitle sx={{ textAlign: "center", fontWeight: "700" }}>
               Shopping Cart
             </DialogTitle>
             <DialogContent>

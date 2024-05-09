@@ -1,7 +1,7 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,57 +9,65 @@ import { CART } from "./Navbar";
 
 // Styles
 const cardStyle = {
-  maxWidth: 90,
-  minWidth: 90,
-  minHeight: 80,
-  maxHeight: 80,
+  width: 500,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
   color: "#ff8928",
   borderRadius: "10px",
+  border: "3px solid #ff8928",
+};
+
+const imageStyle: React.CSSProperties = {
+  width: 80,
+  height: 80,
+  objectFit: "cover",
+  borderRadius: "10px",
+};
+
+const contentWrapperStyle: React.CSSProperties = {
+  marginLeft: "20px",
+  marginRight: "20px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+  height: "100%", // Ensure the wrapper takes full height of the card
+  width: "calc(100% - 140px)",
 };
 
 const productNameStyle = {
   color: "#ff8928",
-  WebkitTextStroke: "0.2px white",
-  textShadow: "0px 0px 0.5px white",
+  fontFamily: "Comic Sans MS",
   fontWeight: "bold",
   fontSize: "1rem",
-  fontFamily: "Comic Sans MS",
+  marginBottom: "5px", // Add some space between product name and quantity
 };
 
 const quantityStyle = {
   color: "#ff8928",
-  textShadow: "0px 0px 0.5px white",
-  fontSize: "0.85rem",
   fontFamily: "Comic Sans MS",
+  fontSize: "0.85rem",
 };
 
 const priceStyle = {
   color: "#ff8928",
-  textShadow: "0px 0px 5px white",
+  fontFamily: "Comic Sans MS",
   fontWeight: "bold",
   fontSize: "0.9rem",
-  fontFamily: "Comic Sans MS",
-  marginLeft: "180px",
-  marginBottom: "30px",
 };
 
 const buttonStyle = {
   fontFamily: "Comic Sans MS",
   fontWeight: "bold",
   borderRadius: "10px",
-  left: "350px",
   backgroundColor: "transparent",
   color: "#ff8928",
   border: "1px solid #ff8928",
-  marginTop: "-100px",
   "&:hover": {
     backgroundColor: "#ff8928",
-    textShadow: "0px 0px 9px black",
-    boxShadow: "0px 0px 5px #ff8928",
     color: "white",
-    border: "1px solid white",
   },
-  boxShadow: "0px 0px 5px white",
 };
 
 const Cart: React.FC<CART & { updateCartData: () => void }> = ({
@@ -70,10 +78,10 @@ const Cart: React.FC<CART & { updateCartData: () => void }> = ({
   updateCartData,
 }) => {
   axios.defaults.withCredentials = true;
-
   const [userID, setUserID] = useState<string>();
-
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get("http://localhost:2100/userauth/")
@@ -86,8 +94,6 @@ const Cart: React.FC<CART & { updateCartData: () => void }> = ({
       })
       .catch((err) => console.log(err));
   }, []);
-
-  const [loading, setLoading] = useState<boolean>(false);
 
   const handleRemoveFromCart = () => {
     setLoading(true);
@@ -104,44 +110,33 @@ const Cart: React.FC<CART & { updateCartData: () => void }> = ({
   };
 
   return (
-    <>
-      <div style={{ display: "flex" }}>
-        <Card
-          sx={{
-            ...cardStyle,
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></Card>
-
-        <div style={{ padding: "5px" }}>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={productNameStyle}
-          >
+    <Card sx={cardStyle}>
+      <img src={image} alt={product} style={imageStyle} />
+      <div
+        style={{
+          ...contentWrapperStyle,
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <Typography variant="h5" sx={productNameStyle}>
             {product}
           </Typography>
-          <Typography gutterBottom component="div" sx={quantityStyle}>
-            Quantity: {quantity} x
-          </Typography>
-          <Typography gutterBottom component="div" sx={priceStyle}>
-            Price: Rs.{price}-/-
-          </Typography>
-          <Button
-            size="small"
-            variant="contained"
-            disabled={loading}
-            onClick={handleRemoveFromCart}
-            sx={buttonStyle}
-          >
-            <span>Remove</span>
-          </Button>
+          <Typography sx={quantityStyle}>Quantity: {quantity} x</Typography>
+          <Typography sx={priceStyle}>Price: Rs.{price}-/-</Typography>
         </div>
+        <Button
+          size="small"
+          variant="contained"
+          disabled={loading}
+          onClick={handleRemoveFromCart}
+          sx={buttonStyle}
+        >
+          Remove
+        </Button>
       </div>
-    </>
+    </Card>
   );
 };
 
