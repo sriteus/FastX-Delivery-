@@ -26,7 +26,7 @@ const cardStyle = {
 
 const titleStyle = {
   color: "white",
-  WebkitTextStroke: "0.9px white",
+  WebkitTextStroke: "0.9px #ff8928",
   textShadow: "0px 0px 9px black ",
   fontWeight: "bold",
   fontSize: "1.95rem",
@@ -35,7 +35,7 @@ const titleStyle = {
 
 const descriptionStyle = {
   color: "white",
-  WebkitTextStroke: "0.2px white",
+  WebkitTextStroke: "0.6px #ff8928",
   textShadow: "0px 0px 9px black ",
   fontWeight: "bold",
   fontSize: "1rem",
@@ -43,7 +43,7 @@ const descriptionStyle = {
 };
 
 const cardActionsStyle = {
-  marginLeft: "220px",
+  marginLeft: "200px",
   mt: "40px",
 };
 
@@ -53,13 +53,13 @@ const buttonStyle = {
   borderRadius: "10px",
   backgroundColor: "transparent",
   color: "white",
-  border: "1px solid white",
+  border: "4px solid #ff8928",
   "&:hover": {
-    backgroundColor: "green",
-    textShadow: "0px 0px 9px black",
-    boxShadow: "0px 0px 5px green",
+    backgroundColor: "#ff8928",
+    textShadow: "0px 0px 9px #ff8928",
+    boxShadow: "0px 0px 5px #ff8928",
   },
-  boxShadow: "0px 0px 5px white",
+  boxShadow: "0px 0px 5px #ff8928",
 };
 
 const dialogContentStyle = {
@@ -110,6 +110,7 @@ const CardItems: React.FC<BigCat> = ({ name, description, image }) => {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("${image}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          border: "5px solid #ff8928",
         }}
       >
         <CardContent>

@@ -13,31 +13,29 @@ const cardStyle = {
   minWidth: 90,
   minHeight: 80,
   maxHeight: 80,
-  color: "white",
+  color: "#ff8928",
   borderRadius: "10px",
 };
 
 const productNameStyle = {
-  color: "white",
-  WebkitTextStroke: "0.9px black",
-  textShadow: "0px 0px 9px black",
+  color: "#ff8928",
+  WebkitTextStroke: "0.2px white",
+  textShadow: "0px 0px 0.5px white",
   fontWeight: "bold",
   fontSize: "1rem",
   fontFamily: "Comic Sans MS",
 };
 
 const quantityStyle = {
-  color: "white",
-  WebkitTextStroke: "0.2px white",
-  textShadow: "0px 0px 2px black",
-  fontSize: "0.75rem",
+  color: "#ff8928",
+  textShadow: "0px 0px 0.5px white",
+  fontSize: "0.85rem",
   fontFamily: "Comic Sans MS",
 };
 
 const priceStyle = {
-  color: "white",
-  WebkitTextStroke: "0.9px black",
-  textShadow: "0px 0px 9px black",
+  color: "#ff8928",
+  textShadow: "0px 0px 5px white",
   fontWeight: "bold",
   fontSize: "0.9rem",
   fontFamily: "Comic Sans MS",
@@ -51,13 +49,15 @@ const buttonStyle = {
   borderRadius: "10px",
   left: "350px",
   backgroundColor: "transparent",
-  color: "white",
-  border: "1px solid white",
+  color: "#ff8928",
+  border: "1px solid #ff8928",
   marginTop: "-100px",
   "&:hover": {
-    backgroundColor: "green",
+    backgroundColor: "#ff8928",
     textShadow: "0px 0px 9px black",
-    boxShadow: "0px 0px 5px green",
+    boxShadow: "0px 0px 5px #ff8928",
+    color: "white",
+    border: "1px solid white",
   },
   boxShadow: "0px 0px 5px white",
 };

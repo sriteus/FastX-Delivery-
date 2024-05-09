@@ -135,7 +135,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: "white", color: "black" }}
+        sx={{ backgroundColor: "#ff8928", color: "white" }}
       >
         <Toolbar>
           <Typography
@@ -144,7 +144,10 @@ export default function Navbar() {
             component="div"
             sx={{
               flexGrow: 1,
-              display: { xs: "none", sm: "block", fontFamily: "Comic Sans MS" },
+              display: { xs: "none", sm: "block" },
+              fontFamily: "'Arial', sans-serif",
+              fontWeight: 700,
+              fontSize: "1.5rem",
             }}
           >
             FastX
@@ -156,11 +159,11 @@ export default function Navbar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              sx={{ border: "2px solid black", borderRadius: "10px" }}
+              sx={{ border: "2px solid white", borderRadius: "10px" }}
             />
           </Search>
           <IconButton sx={{ marginLeft: "20px" }} onClick={handleOpenDialog}>
-            <ShoppingCartOutlinedIcon sx={{ color: "black" }} />
+            <ShoppingCartOutlinedIcon sx={{ color: "white" }} />
           </IconButton>
           <Dialog
             open={openDialog}
@@ -171,10 +174,10 @@ export default function Navbar() {
                 minHeight: 520,
                 maxHeight: 520,
                 minWidth: 600,
-                backgroundColor: "black",
-                border: "4px solid white",
+                backgroundColor: "#fceed1",
+                border: "4px solid #ff8928",
                 backgroundSize: "cover",
-                color: "white",
+                color: "#ff8928",
                 borderRadius: "20px",
               },
             }}
@@ -202,7 +205,7 @@ export default function Navbar() {
           </Dialog>
 
           <IconButton sx={{ marginLeft: "5px" }}>
-            <AccountCircleOutlinedIcon sx={{ color: "black" }} />
+            <AccountCircleOutlinedIcon sx={{ color: "white" }} />
           </IconButton>
         </Toolbar>
       </AppBar>
