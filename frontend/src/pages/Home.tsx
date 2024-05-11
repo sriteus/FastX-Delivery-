@@ -45,12 +45,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      {userID === 2 && (
-        <div>
-          Hi Category Admin (FastX Executive)
-          <AdminCategory />
-        </div>
-      )}
+
       <Grid container spacing={2} padding={2}>
         {bigCat.map((value, index) => (
           <Grid item xs={12} marginTop={4} sm={6} md={3} key={index}>
@@ -62,6 +57,7 @@ const Home = () => {
           </Grid>
         ))}
       </Grid>
+      {userID === 1 && <AdminCategory />}
     </div>
   );
 };

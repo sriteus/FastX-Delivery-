@@ -1,6 +1,7 @@
 import express from "express";
 import db from "../database/db";
-import cors from "cors";
+import multer from "multer"; // Import multer for handling file uploads
+import path from "path";
 
 const router = express.Router();
 
@@ -84,6 +85,56 @@ router.delete("/removeItem", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error processing your request");
+  }
+});
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const dest = path.resolve(
+      __dirname,
+      "..",
+      "..",
+      "..",
+      "frontend",
+      "public",
+      "assets"
+    );
+    cb(null, dest);
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+router.post("/addCategory", upload.single("image"), async (req, res) => {
+  try {
+    // Check if a file was uploaded
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "No image uploaded",
+      });
+    }
+
+    const { name, description } = req.body;
+    const imagePath = req.file.path;
+    const start_index = imagePath.indexOf("assets");
+    const resultImagePath =
+      start_index !== -1 ? `/${imagePath.slice(start_index)}` : "";
+
+    const query =
+      "INSERT INTO big_categories (name, description, image) VALUES ($1, $2, $3) RETURNING *;";
+    const result = await db(query, [name, description, resultImagePath]);
+
+    res.json({
+      success: true,
+      message: "Category added successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error processing your request");
+    console.log("WHATTTTTT");
   }
 });
 
