@@ -60,18 +60,10 @@ const AddCategoryForm: React.FC = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography
-        variant="h5"
-        gutterBottom
-        style={{ color: "#ff8928", fontFamily: "Comic Sans MS" }}
-      >
+      <Typography variant="h5" gutterBottom style={{ color: "#ff8928" }}>
         Hi Category Admin (FastX Executive)
       </Typography>
-      <Typography
-        variant="h3"
-        gutterBottom
-        style={{ color: "#ff8928", fontFamily: "Comic Sans MS" }}
-      >
+      <Typography variant="h3" gutterBottom style={{ color: "#ff8928" }}>
         Add New Category
       </Typography>
       <form onSubmit={handleFormSubmit} encType="multipart/form-data">
